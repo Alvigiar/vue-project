@@ -17,10 +17,12 @@
   justify-self: end;
   cursor: pointer;
 }
+
 .burger-box__toggle {
   width: 100%;
   height: 2px;
 }
+
 .burger-box__toggle > span::before,
 .burger-box__toggle > span,
 .burger-box__toggle > span::after {
@@ -30,10 +32,12 @@
   transition: 0.3s;
   background-color: black;
 }
+
 .burger-box__toggle > span::before {
   content: "";
   top: 9px;
 }
+
 .burger-box__toggle > span::after {
   content: "";
   top: 18px;

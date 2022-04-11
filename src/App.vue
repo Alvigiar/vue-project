@@ -1,8 +1,10 @@
 <template>
   <div class="content-box">
-    <my-burger-button></my-burger-button>
+    <my-burger-button
+      :class="{ circle: classCircle }"
+      @click="activeClass"
+    ></my-burger-button>
     <div>Простой текст</div>
-    <div>{{ text }}</div>
   </div>
 </template>
 
@@ -12,7 +14,14 @@ import MyBurgerButton from "./components/MyBurgerButton.vue";
 export default {
   components: { MyBurgerButton },
   data() {
-    return {};
+    return {
+      classCircle: false,
+    };
+  },
+  methods: {
+    activeClass() {
+      this.classCircle = true;
+    },
   },
 };
 </script>
@@ -26,9 +35,13 @@ export default {
   justify-content: center;
   gap: 10px;
 }
+
 .content-box {
   display: grid;
   justify-items: center;
   gap: 30px;
+}
+.circle {
+  display: none;
 }
 </style>
