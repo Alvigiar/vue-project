@@ -1,26 +1,37 @@
 <template>
   <div class="content-box">
-    <my-burger-button
-      :class="{ circle: classCircle }"
-      @click="activeClass"
-    ></my-burger-button>
-    <div>Простой текст</div>
+    <!-- v-bind:modal с помощью этого передается информация modalIsShow (false), в последствии дочерние могут её прослушивать -->
+    <!-- v-on:modal-toggle при изменении состояния происходит вызов функции modalToggle -->
+    <burger-button
+      v-bind:modal="modalIsShow"
+      v-on:modal-toggle="modalToggle"
+    ></burger-button>
+    <modal v-bind:modal="modalIsShow" v-on:modal-box="modalToggle"></modal>
+    <div class="login">
+      <button>Вход</button>
+      <button>Регистрация</button>
+    </div>
   </div>
 </template>
 
 <script>
-import MyBurgerButton from "./components/MyBurgerButton.vue";
+// импорт дочерних элементов
+import BurgerButton from "./components/BurgerButton.vue";
+import Modal from "./components/Modal.vue";
 
 export default {
-  components: { MyBurgerButton },
+  // происходит подключение компонентов
+  components: { BurgerButton, Modal },
   data() {
     return {
-      classCircle: false,
+      modalIsShow: false, // состояние
     };
   },
   methods: {
-    activeClass() {
-      this.classCircle = true;
+    modalToggle() {
+      // элементу modalIsShow присваиваем значение, противоположное его значению
+      this.modalIsShow = !this.modalIsShow;
+      console.log("modalToggle");
     },
   },
 };
@@ -41,7 +52,7 @@ export default {
   justify-items: center;
   gap: 30px;
 }
-.circle {
-  display: none;
+.login {
+  display: grid;
 }
 </style>
